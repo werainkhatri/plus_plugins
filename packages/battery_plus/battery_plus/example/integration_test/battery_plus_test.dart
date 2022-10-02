@@ -13,7 +13,12 @@ import 'package:integration_test/integration_test.dart';
 void main() {
   IntegrationTestWidgetsFlutterBinding.ensureInitialized();
 
-  final bool batteryLevelIsImplemented = Platform.isAndroid || Platform.isMacOS;
+  final bool batteryLevelIsImplemented =
+      Platform.isAndroid || Platform.isMacOS || Platform.isWindows;
+  final bool batteryStateIsImplemented = Platform.isAndroid ||
+      Platform.isIOS ||
+      Platform.isMacOS ||
+      Platform.isWindows;
   final bool isInBatterySaveModeIsImplemented =
       Platform.isAndroid || Platform.isIOS || Platform.isWindows;
 
@@ -23,6 +28,11 @@ void main() {
     final batteryLevel = await Battery().batteryLevel;
     expect(batteryLevel, isNotNull);
   }, skip: !batteryLevelIsImplemented);
+
+  testWidgets('Can get battery state', (WidgetTester tester) async {
+    final batteryState = await Battery().batteryState;
+    expect(batteryState, isNotNull);
+  }, skip: !batteryStateIsImplemented);
 
   testWidgets('Can get if device is in battery save mode',
       (WidgetTester tester) async {
