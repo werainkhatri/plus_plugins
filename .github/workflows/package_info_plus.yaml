@@ -18,125 +18,153 @@ env:
   PLUGIN_EXAMPLE_SCOPE: "*package_info_plus_example*"
 
 jobs:
-  android_build:
-    runs-on: macos-latest
-    timeout-minutes: 30
-    steps:
-      - name: "Checkout repository"
-        uses: actions/checkout@v2
-      - name: "Install Flutter"
-        run: ./.github/workflows/scripts/install-flutter.sh stable
-      - name: "Install Tools"
-        run: ./.github/workflows/scripts/install-tools.sh
+  # android_build:
+  #   runs-on: macos-latest
+  #   timeout-minutes: 30
+  #   steps:
+  #     - name: "Checkout repository"
+  #       uses: actions/checkout@v2
+  #     - name: "Install Flutter"
+  #       run: ./.github/workflows/scripts/install-flutter.sh stable
+  #     - name: "Install Tools"
+  #       run: ./.github/workflows/scripts/install-tools.sh
 
-      # Required for Android builds
-      - uses: actions/setup-java@v1
-        with:
-          java-version: '11'
+  #     # Required for Android builds
+  #     - uses: actions/setup-java@v1
+  #       with:
+  #         java-version: '11'
 
-      - name: "Build Example"
-        run: ./.github/workflows/scripts/build-examples.sh android ./lib/main.dart
+  #     - name: "Build Example"
+  #       run: ./.github/workflows/scripts/build-examples.sh android ./lib/main.dart
 
-  android_integration_test:
-    runs-on: macos-latest
-    timeout-minutes: 30
-    steps:
-      - name: "Checkout repository"
-        uses: actions/checkout@v2
-      - name: "Install Flutter"
-        run: ./.github/workflows/scripts/install-flutter.sh stable
-      - name: "Install Tools"
-        run: ./.github/workflows/scripts/install-tools.sh
+  # android_integration_test:
+  #   runs-on: macos-latest
+  #   timeout-minutes: 30
+  #   steps:
+  #     - name: "Checkout repository"
+  #       uses: actions/checkout@v2
+  #     - name: "Install Flutter"
+  #       run: ./.github/workflows/scripts/install-flutter.sh stable
+  #     - name: "Install Tools"
+  #       run: ./.github/workflows/scripts/install-tools.sh
 
-      # Required for Android builds
-      - uses: actions/setup-java@v1
-        with:
-          java-version: '11'
+  #     # Required for Android builds
+  #     - uses: actions/setup-java@v1
+  #       with:
+  #         java-version: '11'
 
-      - name: "Bootstrap Workspace"
-        run: melos bootstrap
-      - name: "Android Integration Test"
-        uses: reactivecircus/android-emulator-runner@v2
-        with:
-          api-level: 30
-          arch: x86_64
-          target: google_apis
-          profile: Nexus 5X
-          script: ./.github/workflows/scripts/integration-test.sh android package_info_plus_example
+  #     - name: "Bootstrap Workspace"
+  #       run: melos bootstrap
+  #     - name: "Android Integration Test"
+  #       uses: reactivecircus/android-emulator-runner@v2
+  #       with:
+  #         api-level: 30
+  #         arch: x86_64
+  #         target: google_apis
+  #         profile: Nexus 5X
+  #         script: ./.github/workflows/scripts/integration-test.sh android package_info_plus_example
 
-  ios:
-    runs-on: macos-latest
-    timeout-minutes: 30
-    steps:
-      - name: "Checkout repository"
-        uses: actions/checkout@v2
-      - name: "Install Flutter"
-        run: ./.github/workflows/scripts/install-flutter.sh stable
-      - name: "Install Tools"
-        run: ./.github/workflows/scripts/install-tools.sh
-      - name: "Build Example"
-        run: ./.github/workflows/scripts/build-examples.sh ios ./lib/main.dart
+  # ios:
+  #   runs-on: macos-latest
+  #   timeout-minutes: 30
+  #   steps:
+  #     - name: "Checkout repository"
+  #       uses: actions/checkout@v2
+  #     - name: "Install Flutter"
+  #       run: ./.github/workflows/scripts/install-flutter.sh stable
+  #     - name: "Install Tools"
+  #       run: ./.github/workflows/scripts/install-tools.sh
+  #     - name: "Build Example"
+  #       run: ./.github/workflows/scripts/build-examples.sh ios ./lib/main.dart
 
-  ios_integration_test:
-    runs-on: macos-latest
-    timeout-minutes: 30
-    steps:
-      - name: "Checkout repository"
-        uses: actions/checkout@v2
-      - name: "Install Flutter"
-        run: ./.github/workflows/scripts/install-flutter.sh stable
-      - name: "Install Tools"
-        run: ./.github/workflows/scripts/install-tools.sh
-      - name: "Start Simulator"
-        uses: futureware-tech/simulator-action@v1
-        with:
-          model: 'iPhone 8'
-      - name: "Run Integration Test"
-        run: ./.github/workflows/scripts/integration-test.sh ios package_info_plus_example
+  # ios_integration_test:
+  #   runs-on: macos-latest
+  #   timeout-minutes: 30
+  #   steps:
+  #     - name: "Checkout repository"
+  #       uses: actions/checkout@v2
+  #     - name: "Install Flutter"
+  #       run: ./.github/workflows/scripts/install-flutter.sh stable
+  #     - name: "Install Tools"
+  #       run: ./.github/workflows/scripts/install-tools.sh
+  #     - name: "Start Simulator"
+  #       uses: futureware-tech/simulator-action@v1
+  #       with:
+  #         model: 'iPhone 8'
+  #     - name: "Run Integration Test"
+  #       run: ./.github/workflows/scripts/integration-test.sh ios package_info_plus_example
 
-  macos:
-    runs-on: macos-latest
-    timeout-minutes: 30
-    steps:
-      - name: "Checkout repository"
-        uses: actions/checkout@v2
-      - name: "Install Flutter"
-        run: ./.github/workflows/scripts/install-flutter.sh stable
-      - name: "Install Tools"
-        run: ./.github/workflows/scripts/install-tools.sh
-      - name: "Build Example"
-        run: ./.github/workflows/scripts/build-examples.sh macos ./lib/main.dart
+  # macos:
+  #   runs-on: macos-latest
+  #   timeout-minutes: 30
+  #   steps:
+  #     - name: "Checkout repository"
+  #       uses: actions/checkout@v2
+  #     - name: "Install Flutter"
+  #       run: ./.github/workflows/scripts/install-flutter.sh stable
+  #     - name: "Install Tools"
+  #       run: ./.github/workflows/scripts/install-tools.sh
+  #     - name: "Build Example"
+  #       run: ./.github/workflows/scripts/build-examples.sh macos ./lib/main.dart
 
-  linux:
+  # linux:
+  #   runs-on: ubuntu-latest
+  #   timeout-minutes: 30
+  #   steps:
+  #     - name: "Checkout repository"
+  #       uses: actions/checkout@v2
+  #     - name: "Install Flutter"
+  #       run: ./.github/workflows/scripts/install-flutter.sh stable
+  #     - name: "Install Tools"
+  #       run: ./.github/workflows/scripts/install-tools.sh
+  #     - name: "Build Example"
+  #       run: ./.github/workflows/scripts/build-examples.sh linux ./lib/main.dart
+
+  # windows:
+  #   runs-on: windows-latest
+  #   timeout-minutes: 30
+  #   steps:
+  #     - name: "Checkout repository"
+  #       uses: actions/checkout@v2
+  #     - name: "Install Flutter"
+  #       run: ./.github/workflows/scripts/install-flutter.sh stable
+  #     - name: "Install Tools"
+  #       run: ./.github/workflows/scripts/install-tools.sh
+  #     - name: "Build Example"
+  #       run: ./.github/workflows/scripts/build-examples.sh windows ./lib/main.dart
+
+  # windows_integration_test:
+  #   runs-on: windows-latest
+  #   timeout-minutes: 30
+  #   steps:
+  #     - name: "Checkout repository"
+  #       uses: actions/checkout@v2
+  #     - name: "Install Flutter"
+  #       run: ./.github/workflows/scripts/install-flutter.sh stable
+  #     - name: "Install Tools"
+  #       run: ./.github/workflows/scripts/install-tools.sh
+  #     - name: "Run Integration Test"
+  #       run: ./.github/workflows/scripts/integration-test.sh windows package_info_plus_example
+
+  # web:
+  #   runs-on: ubuntu-latest
+  #   timeout-minutes: 30
+  #   steps:
+  #     - name: "Checkout repository"
+  #       uses: actions/checkout@v2
+  #     - name: "Install Flutter"
+  #       run: ./.github/workflows/scripts/install-flutter.sh stable
+  #     - name: "Install Tools"
+  #       run: ./.github/workflows/scripts/install-tools.sh
+  #     - name: "Build Example"
+  #       run: ./.github/workflows/scripts/build-examples.sh web ./lib/main.dart
+
+  web-integration-test:
     runs-on: ubuntu-latest
     timeout-minutes: 30
     steps:
-      - name: "Checkout repository"
-        uses: actions/checkout@v2
-      - name: "Install Flutter"
-        run: ./.github/workflows/scripts/install-flutter.sh stable
-      - name: "Install Tools"
-        run: ./.github/workflows/scripts/install-tools.sh
-      - name: "Build Example"
-        run: ./.github/workflows/scripts/build-examples.sh linux ./lib/main.dart
-
-  windows:
-    runs-on: windows-latest
-    timeout-minutes: 30
-    steps:
-      - name: "Checkout repository"
-        uses: actions/checkout@v2
-      - name: "Install Flutter"
-        run: ./.github/workflows/scripts/install-flutter.sh stable
-      - name: "Install Tools"
-        run: ./.github/workflows/scripts/install-tools.sh
-      - name: "Build Example"
-        run: ./.github/workflows/scripts/build-examples.sh windows ./lib/main.dart
-
-  windows_integration_test:
-    runs-on: windows-latest
-    timeout-minutes: 30
-    steps:
+      - name: "Install Chrome"
+        uses: browser-actions/setup-chrome@latest
       - name: "Checkout repository"
         uses: actions/checkout@v2
       - name: "Install Flutter"
@@ -144,17 +172,4 @@ jobs:
       - name: "Install Tools"
         run: ./.github/workflows/scripts/install-tools.sh
       - name: "Run Integration Test"
-        run: ./.github/workflows/scripts/integration-test.sh windows package_info_plus_example
-
-  web:
-    runs-on: ubuntu-latest
-    timeout-minutes: 30
-    steps:
-      - name: "Checkout repository"
-        uses: actions/checkout@v2
-      - name: "Install Flutter"
-        run: ./.github/workflows/scripts/install-flutter.sh stable
-      - name: "Install Tools"
-        run: ./.github/workflows/scripts/install-tools.sh
-      - name: "Build Example"
-        run: ./.github/workflows/scripts/build-examples.sh web ./lib/main.dart
+        run: ./.github/workflows/scripts/integration-test.sh web package_info_plus_example
